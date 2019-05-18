@@ -17,29 +17,29 @@ Follow the instructions for your host OS:
 
 ## Running our first container
 
-Once Docker is installed, lets dive into creating our first container by executing the following command in a CLI of your choice.
+Once Docker is installed, lets dive into creating our first container by executing the following command in a CLI of choice.
 
 ```bash
 docker run hello-world
 ```
 
 {% hint style="info" %}
-You will most likely need internet connectivity in order to execute this command
+Internet connectivity is needed in order to execute this command.
 {% endhint %}
 
 The command should output something along these lines:
 
-```bash
+```text
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ...
 ```
 
-Yay! Congratulations, you've just created your first container. Albeit a very simple one, we'll be correcting that very soon.
+**Yay!** Congratulations, you've just created your first container. Albeit a very simple one, we'll be correcting that very soon.
 
 ## Terminology
 
-Let's understand some of the commonly used terminology before we dive into deeper waters:
+Let's understand some of the commonly used terminology before we dive deeper into containers:
 
 * **Images** - An image is a file, comprised of multiple layers, used to execute code in a container. Think of this as the blueprint that is used to run a container from.
 * **Layers** - Docker images are designed to be composed of a series of layers.
@@ -64,7 +64,7 @@ Let's try to run a new wordpress blog by running this command.
 docker run --name docker-blog -p 8085:80 -d wordpress:apache
 ```
 
-This should start the container running our new `wordpress` based `docker-blog`, and can be seen by visiting `http://localhost:8085` in your browser.
+This should start the container running our new `wordpress` based `docker-blog`, and can be seen by visiting [`http://localhost:8085`](http://localhost:8085) in your browser.
 
 ![Wordpress running in Docker](.gitbook/assets/docker-blog.png)
 
@@ -77,11 +77,19 @@ Lets look at some of the parameters of the docker run command:
 
 ## Some other useful docker commands
 
+### Pull an image from registry to local machine
+
+In cases where a certain image might need to be used later, it can be pulled on the local machine by running this command:
+
+```bash
+docker pull wordpress:latest
+```
+
 ### Find which images are available locally
 
-As we explained above, images are downloaded from docker registry when being used the first time. In case if you want to check which images are available on your machine, run this command:
+As explained above, images are downloaded from docker registry when being used the first time. In case if you want to check which images are available on your machine, run this command:
 
-```text
+```bash
 docker image ls
 ```
 
@@ -102,7 +110,7 @@ hello-world			latest              fce289e99eb9        4 months ago        1.84kB
 
 At times, we would like to see the status of containers and their state. In that case, run this command:
 
-```text
+```bash
 docker ps -a
 ```
 
@@ -113,19 +121,19 @@ CONTAINER ID        IMAGE                COMMAND                  CREATED       
 f5abd858308d        wordpress:apache     "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:8085->80/tcp   docker-blog
 ```
 
-* **CONTAINER ID** - this is the SHA1 name that's automatically assigned to container.
-* **IMAGE** - this is the name of the image the container was created with.
-* **COMMAND** - each image runs 1 \(and only 1\) command when it starts, this is that command.
-* **CREATED** - how long ago the container was created.
-* **STATUS** - the current status of the container.
-* **PORTS** - the ports exposed by the container and their mappings.
-* **NAMES** - the name of the container.
+* **Container ID** - SHA1 code that's automatically assigned to container.
+* **Image** - name of the image the container was created with.
+* **Command** - the 1 \(and only 1\) command that is executed when an image starts.
+* **Created** - how long ago the container was created.
+* **Status** - current status of the container.
+* **Ports** - ports exposed by the container and their mappings.
+* **Names** - name of the container.
 
 ### Stop, start, restart containers
 
-In case the container needs to be stopped, then execute this command:
+In case the container needs to be stopped:
 
-```text
+```bash
 docker stop f5abd858308d
 ```
 
@@ -133,50 +141,61 @@ docker stop f5abd858308d
 Whenever referencing a container, image or any other resource in docker commands, the **`ID`** or the **`name`** can be used for that resource.
 {% endhint %}
 
-If the container that is already created that needs to be started, then execute this command:
+If the container that is already created needs to be started:
 
-```text
+```bash
 docker start docker-blog
 ```
 
-When a container needs to be rebooted, run this command:
+When a container needs to be rebooted:
 
-```text
+```bash
 docker restart docker-blog
 ```
 
-## Sample Images
+### Remove a container
 
-* Base Images
-  * Ubuntu
-  * Alpine
-  * CentOS
-* Proxy Tools
-  * [Traefik](https://traefik.io/)
-  * nginx
-* CI/CD
-  * Jenkins
-  * Drone
-* Databases
-  * Elasticsearch
-  * Redis
-  * Mongo
-  * SQL Server
-  * PostgreSQL
-  * InfluxDB
-  * Couchbase
-* Monitoring
-  * Grafana
-  * Prometheus
-  * Jaeger
-* Messaging
-  * RabbitMQ
-  * Nats
-* Swagger
-* Wordpress
-* Consul
-* node
-* Zookeeper
-* ASP.NET Core
-* .NET Core
+Once a container is stopped, it can be removed by:
+
+```bash
+docker rm docker-blog
+```
+
+### Update a container
+
+If any properties on the container need to be changed:
+
+```bash
+docker update docker-blog --restart=always
+```
+
+In this case, we've updated the container to automatically restart whenever it fails or the host machine has been rebooted.
+
+### Execute any command directly on the container
+
+If any particular command needs to be run directly on the container:
+
+```bash
+docker exec docker-blog cat license.txt
+```
+
+In this case, we're printing the contents of a file in the container on the screen.
+
+Using this command, we can directly work inside the container by executing a shell session on it:
+
+```bash
+docker exec -it docker-blog bash
+```
+
+## Exercise
+
+We've been able to run the wordpress container, but the site doesn't work.
+
+Lets try to configure it so that it runs...
+
+{% hint style="info" %}
+Containers can be linked to work together
+{% endhint %}
+
+
 

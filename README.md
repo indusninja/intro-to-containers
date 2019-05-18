@@ -43,18 +43,3 @@ Source: [Medium \(flow.ci\)](https://medium.com/flow-ci/introduction-to-containe
 
 Source: [netapp](https://medium.com/flow-ci/introduction-to-containers-concept-pros-and-cons-orchestration-docker-and-other-alternatives-9a2f1b61132c)
 
-Workshop plan from another workshop:
-
-* Installing Docker
-* Creating your first Docker container
-* Building Docker images
-* Storing and retrieving Docker images from registries such as Docker Hub
-* Building containers from images
-* Docker volumes
-* Container security
-* Using Docker for sandboxing and testing
-* Deploying applications with Docker
-* Orchestration by docker-compose
-* Introduction to kubernetes concepts
-* Deploying, upgrading and monitoring your cloud native applications on kubernetes
-
