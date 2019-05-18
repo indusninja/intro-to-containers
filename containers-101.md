@@ -1,14 +1,26 @@
+---
+description: Getting started with Docker
+---
+
 # Containers 101
 
-## How to get started with Docker
+## Installing Docker
 
-Terminology
+## Terminology
 
 * Images
 * Containers
 * Layers
 * Volumes
 * Ports
+
+Creating our first container
+
+Understanding a container creation command
+
+Some useful commands
+
+
 
 Sample Commands
 
@@ -19,8 +31,7 @@ Sample Commands
 
 Running a Container
 
-* Constructing a container creation command
-
+* 
 Docker Registry
 
 Sample Images
