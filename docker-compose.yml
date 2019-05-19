@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+
+  mysql-db:
+    image: mariadb
+    container_name: mysql-db
+    restart: always
+    networks:
+      - backend
+    volumes:
+      - ./database:/var/lib/mysql
+    environment: 
+      - MYSQL_ROOT_PASSWORD=aqwe123
+      - MYSQL_USER=wpuser
+      - MYSQL_PASSWORD=wpPassword1
+      - MYSQL_DATABASE=wordpress_db
+    
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    restart: always
+    networks:
+      - web
+      - backend
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - 8085:80
+    environment: 
+      - WORDPRESS_DB_HOST=mysql-db
+      - WORDPRESS_DB_USER=wpuser
+      - WORDPRESS_DB_PASSWORD=wpPassword1
+      - WORDPRESS_DB_NAME=wordpress_db
+
+networks:
+  web:
+    external: true
+  backend:
+    external: false
