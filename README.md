@@ -22,6 +22,10 @@ The solution to the [fifth exercise](https://container.shader.works/exercise-5) 
 cd react-app
 docker build -f Dockerfile .
 ```
+Once the image has been built, it can be run into a container by using the following command and found at `http://localhost:8082`:
+```bash
+docker run --name react-weather-app -p 8082:80 -d <imageID>
+```
 
 ## Extra
 The `wordpress` containers from [Exercise 3](#exercise-3) can be created more easily via Docker Compose by using the `docker-compose.yml` file. Before using this Docker Compose configuration, we need 2 folders, which can be created like so:
